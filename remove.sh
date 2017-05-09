@@ -10,11 +10,11 @@ while true; do
     esac
 done
 
-# drop shared data
-sudo rm -rf ./shared
-
 # stop containers
 docker ps -a -f NAME=rpl_mysql --format "{{.Names}}" | xargs -I{} docker stop {}
 
 # drop containers
 docker ps -a -f NAME=rpl_mysql --format "{{.Names}}" | xargs -I{} docker rm {}
+
+# drop shared data
+sudo rm -rf ./shared
