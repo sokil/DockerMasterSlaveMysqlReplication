@@ -1,0 +1,5 @@
+[client]
+host=mysql_master
+database=replicated_db
+user=master
+password=master

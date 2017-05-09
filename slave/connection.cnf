@@ -1,0 +1,5 @@
+[client]
+host=mysql_slave
+database=replicated_db
+user=slave
+password=slave
