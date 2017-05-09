@@ -30,10 +30,8 @@ echo ''
 
 # allow access of slave user
 echo 'Add permissions for slave on master'
-#docker exec -it rpl_mysql_master \
-#    mysql -Nsqe "GRANT REPLICATION SLAVE ON *.* TO 'slave'@'%' IDENTIFIED BY 'slave'; FLUSH PRIVILEGES;"
 docker exec -it rpl_mysql_master \
-    mysql -Nsqe "GRANT ALL PRIVILEGES ON *.* TO 'slave'@'%' IDENTIFIED BY 'slave'; FLUSH PRIVILEGES;"
+    mysql -Nsqe "GRANT REPLICATION SLAVE ON *.* TO 'slave'@'%' IDENTIFIED BY 'slave'; FLUSH PRIVILEGES;"
 
 # Lock table
 echo 'Lock tables on master'
@@ -56,10 +54,6 @@ docker exec -it rpl_mysql_master \
     mysql -Nsqe "USE replicated_db; UNLOCK TABLES;"
 
 ## Run on SLAVE
-echo "Create slave database"
-docker exec -it rpl_mysql_slave \
-    mysql -Nsqe "drop database replicated_db; create database replicated_db;";
-
 echo "Load dump to slave"
 docker exec -it rpl_mysql_slave \
     bash -c 'mysql replicated_db < /var/mysql/common/replicated_db.sql'
