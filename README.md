@@ -2,7 +2,7 @@
 
 Create master-slave mysql replication
 
-create.sh - create containers and configure replication
-remove.sh - remove containers and data
-master.sh - login to master mysql
-slave.sh - login to slave mysql
+* __create.sh__ - create containers and configure replication
+* __remove.sh__ - remove containers and data
+* __master.sh__ - login to master mysql
+* __slave.sh__ - login to slave mysql
